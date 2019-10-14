@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+{% endblock %}
+{% block content %}
+    <div class="table-responsive col-md-12" >
+    <table class="table" id="tabla">
+        <h1 class="blancofondo">Catalogo</h1>
+<br>
+<br>
+    <thead>
+      <tr>
+        <th scope="col" class="blancofondo">#</th>
+        <th scope="col" class="blancofondo">Titulo</th>
+        <th scope="col" class="blancofondo">Género</th>
+        <th scope="col" class="blancofondo">Año</th>
+        <th scope="col" class="blancofondo">Precio</th>
+        <th scope="col" class="blancofondo">Clasificación</th>
+        <th scope="col" class="blancofondo">Stock</th>
+        {% if user.is_authenticated %}
+        <th class="blancofondo">Acciones</th>
+        {% endif %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for j in juegos %}
+      <tr>
+        <th class="blancofondo">{{j.id}}</th>
+        <td class="blancofondo">{{j.titulo}}</td>
+        <td class="blancofondo">{{j.genero}}</td>
+        <td class="blancofondo">{{j.anio}}</td>
+        <td class="blancofondo">{{j.precio}}</td>
+        <td class="blancofondo">{{j.clasificacion}}</td>
+        <td class="blancofondo">{{j.stock}}</td>
+        {% if user.is_authenticated %}
+        <td class="blancofondo">
+          <a href="{% url 'editar_juego' id=j.id %}" class="btn btn-warning btn-block">Editar</a>
+          <a href="{% url 'eliminar_juego' id=j.id %}" class="btn btn-danger btn-block">Borrar</a>
+        {% endif %}
+      </tr>
+      {% endfor %}
+    </tbody>
+</table>
+</div>
+</div>
+{% endblock %}
+
+{% block js %}
+
+<script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $('#tabla').DataTable();
+  });
+</script>
+{% endblock %}

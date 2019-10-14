@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="" method="GET" class="blancofondo">
+  <div class="form-group">
+    <h1> Buscar MacroPlayer</h1>
+<br>
+    <input type="search" name="buscar" id="buscar" class="form-control" placeholder="buscar" >
+    <br>
+    <button type="submit" class="btn btn-primary col-md-12">Buscar</button>  
+  </div>
+</form>
+<br>
+<br>
+<div class="table-responsive">
+<table class="table">
+  {% if usuarios %}
+    <thead class="blancofondo">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Usuario</th>
+        <th scope="col">Email</th>
+        {% if user.is_authenticated %}
+        <th class="blancofondo">Acciones</th>
+        {% endif %}
+      </tr>
+    </thead>
+    <tbody class="blancofondo">
+        {% for u in usuarios %}
+      <tr>
+        <th scope="row">{{u.id}}</th>
+        <td>{{u.first_name}}</td>
+        <td>{{u.last_name}}</td>
+        <td>{{u.username}}</td>
+        <td>{{u.email}}</td> 
+        {% if user.is_authenticated %}
+        {% if u.username != Macro %}
+        {% endif %} 
+        {% else %}
+        <td class="blancofondo">
+          <a href="{% url 'eliminar_usuario' id=u.id %}" class="btn btn-danger btn-block">Borrar</a>
+        {% endif %}       
+      </tr>
+      {% endfor %}
+    </tbody>
+    {% else %}
+    <h5 class="blancofondo">El usuario buscado no existe :'(</h5>
+    {% endif %}
+  </table>
+</div>
+{% endblock %}

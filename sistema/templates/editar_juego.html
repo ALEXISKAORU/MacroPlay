@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="" method="POST" class="blancofondo" id="editar_juego" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h1>Editar Juego</h1>
+    <hr>
+    <hr>
+    <div class="form-group">
+        <label for="">Titulo</label>
+        <input type="text" class="form-control"  value="{{juego.titulo}}" name="titulo" id="">
+    </div>
+    <div class="form-group">
+            <label for="">Género</label>
+            <input type="text" class="form-control" value="{{juego.genero}}"  name="genero" id="">
+    </div>
+    <div class="form-group">
+            <label for="">Año</label>
+            <input type="number" class="form-control" value="{{juego.anio}}"  name="anio" id="">
+    </div>
+    <div class="form-group">
+        <label for="">Precio</label>
+        <input type="number" class="form-control" value="{{juego.precio}}"  name="precio" id="">
+    </div>
+    <div class="form-group">
+        <label for="">Clasificaciòn</label>
+        <input type="text" class="form-control" value="{{juego.clasificacion}}"  name="clasificacion" id="">
+    </div>
+    <div class="form-group">
+        <label for="">Stock</label>
+        <input type="text" class="form-control" value="{{juego.stock}}" name="stock" id="">
+    </div>
+    <div class="form-group">
+        <label for="">Reseña</label>
+        <input type="text" class="form-control" value="{{juego.resenia}}" name="resenia" id="">
+    </div>
+    <div class="form-group">
+        <label for="video">Video</label>
+        <input type="text" class="form-control" value="{{juego.video}}" name="video" id="">
+    </div>
+    <div class="form-group">
+        <label for="">Plataforma</label>
+        <div>
+        <label for="plat_box1"><input type="checkbox" name="j[]" value="PS3" id="plat_box1" {% if juego.PS3 %}checked{% endif %}>PS3</label>
+        <label for="plat_box2"><input type="checkbox" name="j[]" value="PS4" id="plat_box2" {% if juego.PS4 %}checked{% endif %}>PS4</label>
+        <label for="plat_box3"><input type="checkbox" name="j[]" value="XBOX360" id="plat_box3" {% if juego.XBOX360 %}checked{% endif %}>XBOX 360</label>
+        <label for="plat_box4"><input type="checkbox" name="j[]" value="XBOXONE" id="plat_box4" {% if juego.XBOXONE %}checked{% endif %}>XBOX ONE</label>
+        <label for="plat_box5"><input type="checkbox" name="j[]" value="NSWITCH" id="plat_box5" {% if juego.NSWITCH %}checked{% endif %}>NSWITCH</label>
+        <label for="plat_box6"><input type="checkbox" name="j[]" value="N3DS" id="plat_box6" {% if juego.N3DS %}checked{% endif %}>N3DS</label>
+        <label for="plat_box7"><input type="checkbox" name="j[]" value="PC" id="plat_box7" {% if juego.PC %}checked{% endif %}>PC</label>
+    </div>
+    <div class="form-group">
+        <label for="">Modo Online</label>
+        <div>
+        <input type="checkbox" name="j[]" value="Online" id="plat_box8" {% if juego.online %}checked{% endif %}>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary col-md-12">Guardar</button>
+</form>
+{% endblock %}
+{% block js %}
+{% load static %}
+<script src="{% static 'js/jquery.validate.min.js' %}"></script>
+<script src="{% static 'js/app.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,51 @@
+.background-esp{
+    height: 500px;
+    object-fit: cover;
+}
+
+ .blanco{
+    color: #fff;
+ }
+ .txt-dark{
+    color: #ffffff;
+    background-color: #000000bd
+ }
+ 
+.footer{
+     background-color: #000000;
+     margin-top: 510px;
+ }
+ footer ul{
+    margin-top: 40px;
+    margin-bottom:0px;
+    padding-top: 3rem!important;
+    padding-bottom: 3rem!important;
+ }
+ footer ul li{
+    
+    display:inline-block;
+    padding-left: 20px;
+    font-size: 12px;
+ }
+ .blanco:hover{
+     color: #fff;
+ }
+
+  body{
+      background-color: #fff;
+  }
+
+  .blancofondo{
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
+ }
+
+ .imagenfondo{
+   background: url(../img/fondo.jpg);
+ }
+
+.imagenjuego{
+   height: 150px;
+   width: 150px;
+   object-fit: cover;
+}

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card" style="width: 18rem;">
+    <img src="http://www.quickmeme.com/img/08/08d3d194c92f2113a13d2475dc2c336db197b14af0eacbb6c879e8291aac6570.jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">Operación Finalizada</h5>
+        <p class="card-text">listo!</p>
+        <a href="{% url 'index' %}" class="btn btn-primary">Inicio</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="contaniner">
+    <br>
+    <div class="row">
+        <div class="col-md-8">
+            <h4>{{juego.titulo}}</h4>
+            <br>
+            <p>{{juego.resenia}}</p>
+            <br>
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{juego.video}}"></iframe>
+              </div>
+            <br>
+            <h4>Precio: $ {{juego.precio}} CLP</h4>
+        </div>
+        <div class="col-md-4">
+            <img src="/media/{{juego.foto}}" alt="" class="img-fluid">
+            <p>Año: {{juego.anio}}</p>
+            <p>Clasificación: {{juego.clasificacion}}</p>
+            <p>Género: {{juego.genero}}</p>
+            <div>
+            <p>Plataformas Disponible:</p>
+                <label class="checkbox">
+                <input type="checkbox" name="j[]" value="" {% if juego.PS3 %}checked{% endif %} disabled>PS3</label>
+                <input type="checkbox" name="j[]" value="" {% if juego.PS4 %}checked{% endif %} disabled>PS4</label>
+                </div>
+                <div>
+                <input type="checkbox" name="j[]" value="" {% if juego.XBOX360 %}checked{% endif %} disabled>XBOX 360</label>
+                <input type="checkbox" name="j[]" value="" {% if juego.XBOXONE %}checked{% endif %} disabled>XBOX ONE</label>
+                </div>
+                <div>
+                <input type="checkbox" name="j[]" value="" {% if juego.NSWITCH %}checked{% endif %} disabled>NSWITCH</label>
+                <input type="checkbox" name="j[]" value="" {% if juego.N3DS %}checked{% endif %} disabled>N3DS</label>
+                </div>
+                <input type="checkbox" name="j[]" value="" {% if juego.PC %}checked{% endif %} disabled>PC</label></td>
+            <div>
+            <p>Modo Online Disponible:</p>
+                    <label class="checkbox">
+                    <input type="checkbox" name="j[]" value="" {% if juego.online %}checked{% endif %} disabled></label>
+                    </div>
+            <p>Stock: {{juego.stock}}</p>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h3>Comenta</h3>
+        </div>
+        <br>
+        <div class="col-md-12"></div>
+        <div class="col-md-8">
+            {% if user.is_authenticated %}
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="comentario"></label>
+                    <textarea name="comentario" class="form-control" id="" rows="5"></textarea>
+                    <button type="submit" class="btn btn-primary btn-block">Comentar</button>
+                </div>
+            </form>
+            {% endif %}
+        </div>
+        <br>
+        <div class="col-md-12"></div>
+        <div class="col-md-4">
+            <h4>Comentarios</h4>
+            {% for c in comentarios %}
+            <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">{{c.usuario}}</h5>
+                  <p class="card-text">{{c.comentario}}</p>
+                  <p>{{c.creado}}</p>
+                  {% if user.is_staff %}
+                  <a href=" {% url 'borrar_comentario' id=c.id %}" class="btn btn-danger">X</a>
+                  {% endif %}
+                </div>
+              </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
